@@ -20,18 +20,18 @@ namespace LiveTileUpdater.Services
             {
                 ScheduledActionService.Remove(periodicTaskName);
             }
-                liveTileUpdaterTask = new PeriodicTask(periodicTaskName);
-                liveTileUpdaterTask.Description = "Task for upadte live tile";
-                liveTileUpdaterTask.ExpirationTime = DateTime.Now.AddDays(1);
+            liveTileUpdaterTask = new PeriodicTask(periodicTaskName);
+            liveTileUpdaterTask.Description = "Task for upadte live tile";
+            liveTileUpdaterTask.ExpirationTime = DateTime.Now.AddDays(1);
 
-                try
-                {
-                    ScheduledActionService.Add(liveTileUpdaterTask);
-                }
-                catch (InvalidOperationException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+            try
+            {
+                ScheduledActionService.Add(liveTileUpdaterTask);
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
             
 
