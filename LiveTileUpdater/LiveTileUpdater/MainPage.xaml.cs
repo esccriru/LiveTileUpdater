@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using LiveTileUpdater.Resources;
+using Microsoft.Phone.Scheduler;
 
 namespace LiveTileUpdater
 {
@@ -17,6 +18,8 @@ namespace LiveTileUpdater
         public MainPage()
         {
             InitializeComponent();
+
+
 
             // Código de ejemplo para traducir ApplicationBar
             //BuildLocalizedApplicationBar();

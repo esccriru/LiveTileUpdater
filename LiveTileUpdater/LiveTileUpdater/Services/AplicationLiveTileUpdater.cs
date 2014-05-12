@@ -15,25 +15,27 @@ namespace LiveTileUpdater.Services
 
         public void UpdateLiveTile()
         {
-            liveTileUpdaterTask = ScheduledActionService.Find(periodicTaskName) as PeriodicTask;
-            if (liveTileUpdaterTask != null)
-            {
-                ScheduledActionService.Remove(periodicTaskName);
-            }
-            liveTileUpdaterTask = new PeriodicTask(periodicTaskName);
-            liveTileUpdaterTask.Description = "Task for upadte live tile";
-            liveTileUpdaterTask.ExpirationTime = DateTime.Now.AddDays(1);
 
-            try
-            {
-                ScheduledActionService.Add(liveTileUpdaterTask);
-            }
-            catch (InvalidOperationException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
 
-            
+            ScheduledActionService.LaunchForTest(periodicTaskName,
+              TimeSpan.FromMilliseconds(250));
+
+            //if (ScheduledActionService.Find(periodicTaskName) != null)
+            //{
+            //    ScheduledActionService.Remove(periodicTaskName);
+            //}
+
+            //liveTileUpdaterTask = new PeriodicTask(periodicTaskName);
+            //liveTileUpdaterTask.Description = "Actualiza el live tile de manera periodica";
+
+            //try
+            //{
+            //    ScheduledActionService.Add(liveTileUpdaterTask);
+            //}
+            //catch (InvalidOperationException ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
 
         }
     }

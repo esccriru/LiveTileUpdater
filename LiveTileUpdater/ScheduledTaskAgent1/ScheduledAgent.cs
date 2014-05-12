@@ -1,6 +1,9 @@
 ﻿using System.Diagnostics;
 using System.Windows;
 using Microsoft.Phone.Scheduler;
+using Microsoft.Phone.Shell;
+using System;
+using System.Linq;
 
 namespace ScheduledTaskAgent1
 {
@@ -41,7 +44,26 @@ namespace ScheduledTaskAgent1
         {
             //TODO: Agregar código para realizar la tarea en segundo plano
 
-            MessageBox.Show("Agente en segundo plano");
+            //ShellToast shellToast = new ShellToast()
+            //{
+            //    Title = "LiveTileUpdater",
+            //    Content = "Background Task Launched",
+            //    NavigationUri = new Uri("/MainPage.xaml", UriKind.Relative)
+            //};
+            
+            //shellToast.Show();
+
+            StandardTileData ftiledata = new StandardTileData();
+            ftiledata.Title = "titulo";
+            ftiledata.BackTitle = "titulo atras";
+            ftiledata.BackContent = "contenido";
+
+            ShellTile tile = ShellTile.ActiveTiles.First();
+            tile.Update(ftiledata);
+
+#if DEBUG_AGENT
+            ScheduledActionService.LaunchForTest(task.Name, TimeSpan.FromSeconds(60));
+#endif
 
             NotifyComplete();
         }
